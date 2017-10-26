@@ -1,6 +1,10 @@
 #lang racket
 (define lst (list 1 2 34))
 (provide ins_beg)
+(provide ins_end)
+(provide count_top_level)
+(provide count_instances_tr)
+(provide count_instances_deep)
 
 (define (ins_beg el lst)
   (append (list el) lst))
@@ -31,7 +35,7 @@
 (define (count_instances_deep lst)
   (cond[(empty? lst)
        0]
-       [(atom? (car lst))
+       [(not (list? (car lst)))
         (+ 1 (count_instances_deep (cdr lst)))]
        [else
         (+ (count_instances_deep (car lst)) (count_instances_deep (cdr lst)))]))
