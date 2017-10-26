@@ -1,6 +1,5 @@
 #lang racket
 (define tree (list (list empty 2 (list empty 4 empty)) 5 (list (list empty 7 empty) 8 empty)))
-(define tree2(list empty 3 empty))
 (define lst (list 1 31 11 5235 2252 5 25 2 52 5252 252))
 
 (define (displayBTree tree)
@@ -9,7 +8,6 @@
   (println (cadr tree))
   (unless (empty? (caddr tree))
     (displayBTree (caddr tree))))
-(displayBTree tree)
 
 (define (inBTree? item tree)
   (cond[(empty? tree)
@@ -20,7 +18,6 @@
         (inBTree? item (car tree))]
        [else
         (inBTree? item (caddr tree))]))
-(inBTree? 7 tree)
 
 (define (insertBTree item tree)
   (cond[(empty? tree)
@@ -31,19 +28,15 @@
         (list (insertBTree item (car tree)) (cadr tree) (caddr tree))]
        [else
         (list (car tree) (cadr tree) (insertBTree item (caddr tree)))]))
-tree
-(insertBTree 10 tree)
 
 (define (insertListBTree lst tree)
   (cond[(empty? lst)
         tree]
    [else
     (insertListBTree (cdr lst) (insertBTree (car lst) tree ))]))
-(insertListBTree (list 1 2 3 4 5 6 7 8 9 123) tree)
 
 (define (sortList lst)
   (displayBTree(insertListBTree (cdr lst) (list empty (car lst) empty))))
-;(sortList lst)
 
 (define (insertBTreeReverse item tree)
   (cond[(empty? tree)
@@ -79,4 +72,3 @@ tree
 
 (define (sortListHighOrder lst insertFunc)
   (displayBTree(insertFunc (cdr lst) (list empty (car lst) empty))))
-(sortListHighOrder lst insertListBTreeByLastDigit)

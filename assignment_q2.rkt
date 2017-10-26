@@ -1,5 +1,5 @@
 #lang racket
-
+(define lst (list 1 2 34))
 (provide ins_beg)
 
 (define (ins_beg el lst)
@@ -8,7 +8,7 @@
 (define (ins_end lst el)
   (append lst (list el)))
 
-(define (cout_top_level lst)
+(define (count_top_level lst)
   (length lst))
 
 (define (count_instances lst)
